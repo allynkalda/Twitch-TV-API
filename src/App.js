@@ -1,40 +1,25 @@
 import React from 'react';
 import './App.css';
+import { useFetch } from './api/fetch';
+import { URL } from './config/config'
+import Sidebar from './components/Navbar';
+import Main from './components/Main';
+import Grid from '@material-ui/core/Grid';
+
+
 
 function App() {
 
-  const uri = 'https://api.twitch.tv/kraken/streams';
-
-  let h = new Headers();
-  h.append('Client-ID', 'e58bb9u3nmtqp4ikxaz1qg05kelpy7l');
-  h.append('Accept', 'application/vnd.twitchtv.v5+json');
-
-  let req = new Request(uri, {
-    method: 'GET',
-    headers: h,
-    mode: 'cors'
-  });
-
-  fetch(req)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('BAD HTTP');
-      }
-    })
-    .then((jsonData) => {
-      console.log(jsonData);
-    })
-    .catch((err) => {
-      console.log('ERROR: ', err.message);
-    })
-
+const [ data, loading ] = useFetch(URL);
+console.log(data);
+console.log(loading)
 
 
   return (
     <div className="App">
         <h1>Stream Hatchet</h1>
+        <Sidebar></Sidebar>
+        <Main loading={loading} data={data}></Main>
     </div>
   );
 }
