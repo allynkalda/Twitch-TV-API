@@ -12,15 +12,15 @@ const useStyles = makeStyles({
   });
 
 export default function Item(prop) {
+
     const { data } = prop;
     const classes = useStyles();
-
     const items = data.streams.map((data) => {
         return (
-        <Grid className={classes.grid} id={data._id} item xs={4}>
+        <Grid className={classes.grid} id={data._id} item xl={4} lg={4} md={4} sm={6} xs={12}>
             <img className={classes.image} src={data.preview.medium} />
-            <p>{data.channel.display_name}</p>
-            <p>{data.channel.game ? data.channel.game : "no game"}</p>
+            <p>{data.channel.display_name} : {data.channel.game ? data.channel.game : "no game"}</p>
+            <p>{data.viewers} viewers</p>
         </Grid>
         )
     })
