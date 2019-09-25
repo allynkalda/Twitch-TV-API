@@ -52,7 +52,7 @@ export default function Item(prop) {
 
     return (
         <div>
-        <Grid container direction="row" justify="center" alignItems="center">
+        <Grid container direction="row">
         { data && data.streams ? items : null }
         </Grid>
         </div>
