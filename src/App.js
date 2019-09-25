@@ -4,6 +4,7 @@ import { useFetch } from './api/fetch';
 import { URL } from './config/config'
 import Navbar from './components/Navbar';
 import Main from './components/Main';
+import Bar from './components/Bar'
 
 function App() {
 
@@ -27,7 +28,7 @@ const renderMain = () => {
         <Navbar renderMain={renderMain} renderBar={renderBar}></Navbar>
         { !bar ?
         <Main loading={loading} data={data}></Main> :
-        null
+        <Bar loading={loading} data={data}></Bar>
         }
     </div>
   );

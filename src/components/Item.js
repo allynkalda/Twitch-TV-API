@@ -27,12 +27,11 @@ export default function Item(prop) {
     const classes = useStyles();
     const items = data.streams.map((data) => {
         return (
-        <Grid className={classes.grid} id={data._id} item xl={4} lg={4} md={4} sm={6} xs={12}>
+        <Grid item className={classes.grid} id={data._id} xl={4} lg={4} md={4} sm={6} xs={12}>
           <Card className={classes.card}>
           <CardHeader
             avatar={
               <Avatar src={data.channel.logo}>
-                R
               </Avatar>
                 }
             title={data.channel.display_name}
@@ -52,7 +51,7 @@ export default function Item(prop) {
 
     return (
         <div>
-        <Grid container direction="row">
+        <Grid container direction="row" justify="center" alignItems="center">
         { data && data.streams ? items : null }
         </Grid>
         </div>
