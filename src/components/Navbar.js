@@ -9,13 +9,13 @@ const useStyles = makeStyles({
     },
   });
 
-const Navbar = ({renderBar}) => {
+const Navbar = ({renderBar, renderMain}) => {
 
     const classes = useStyles();
 
     return (
         <Grid container className={classes.navbar} direction="row" justify="center" alignItems="center">
-        <Grid item xs={3}><Button color="primary">Popularity</Button></Grid>
+        <Grid item xs={3}><Button onClick={() => renderMain()} color="primary">Popularity</Button></Grid>
         <Grid item xs={3}><Button onClick={() => renderBar()} color="primary">List</Button></Grid>
         </Grid>
     )

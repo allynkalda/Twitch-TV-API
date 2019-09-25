@@ -17,11 +17,18 @@ const renderBar = () => {
   setBar(!bar);
 }
 
+const renderMain = () => {
+  setBar(false);
+}
+
   return (
     <div className="App">
         <h1>Stream Hatchet</h1>
-        <Navbar renderBar={renderBar}></Navbar>
-        <Main loading={loading} data={data}></Main>
+        <Navbar renderMain={renderMain} renderBar={renderBar}></Navbar>
+        { !bar ?
+        <Main loading={loading} data={data}></Main> :
+        null
+        }
     </div>
   );
 }
