@@ -7,6 +7,7 @@ import Item from './Item'
 const useStyles = makeStyles({
     div: {
       padding: '80px',
+      textAlign: 'center'
     },
   });
 

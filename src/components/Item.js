@@ -6,6 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/styles';
+import { switchLanguage } from '../config/languages'
 
 const useStyles = makeStyles({
     grid: {
@@ -18,17 +19,25 @@ const useStyles = makeStyles({
       height: 0,
       paddingTop: '56.25%', // 16:9,
       marginTop:'30'
-    }
+    },
+    rank: {
+        margin: '10',
+        color: '#fff',
+        backgroundColor: 'red'
+      }
   });
 
 export default function Item(prop) {
 
     const { data } = prop;
     const classes = useStyles();
-    const items = data.streams.map((data) => {
+    const language = () => {
+        return switchLanguage(data.channel.language.toUpperCase().toString())
+    }
+    const items = data.streams.map((data, index) => {
         return (
         <Grid item className={classes.grid} key={data._id} xl={4} lg={4} md={4} sm={6} xs={12}>
-          <Card className={classes.card}>
+          <Card>
           <CardHeader
             avatar={
               <Avatar src={data.channel.logo}>
@@ -42,7 +51,13 @@ export default function Item(prop) {
             image={data.preview.medium}
           />
             <CardContent>
-              <p>{data.viewers} viewers</p>
+              <Grid container direction="row" justify="space-between" alignItems="center">
+              <p>{data.viewers.toLocaleString()} viewers</p>
+              <p>{switchLanguage(data.channel.language.toUpperCase())}</p>
+              <Avatar className={classes.rank} >
+                {index + 1}
+              </Avatar>
+              </Grid>
             </CardContent>
           </Card>
         </Grid>

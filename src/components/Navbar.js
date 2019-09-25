@@ -1,12 +1,19 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
-    navbar: {
-      background: 'pink',
+    root: {
+      flexGrow: '1',
     },
+    appbar: {
+      alignItems: 'center'
+    },
+    button: {
+      padding: '0px 20px 0px 20px'
+    }
   });
 
 const Navbar = ({renderBar, renderMain}) => {
@@ -14,10 +21,14 @@ const Navbar = ({renderBar, renderMain}) => {
     const classes = useStyles();
 
     return (
-        <Grid container className={classes.navbar} direction="row" justify="center" alignItems="center">
-        <Grid item xs={3}><Button onClick={() => renderMain()} color="primary">Popularity</Button></Grid>
-        <Grid item xs={3}><Button onClick={() => renderBar()} color="primary">List</Button></Grid>
-        </Grid>
+      <div className={classes.root}>
+        <AppBar className={classes.appbar} position="fixed">
+          <Toolbar>
+              <Button className={classes.button} onClick={() => renderMain()} color="inherit">Grid View</Button>
+              <Button className={classes.button} onClick={() => renderBar()} color="inherit">List View</Button>
+          </Toolbar>
+        </AppBar>
+      </div>
     )
 }
 
