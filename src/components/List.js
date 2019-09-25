@@ -10,23 +10,27 @@ const useStyles = makeStyles({
     div: {
       padding: '80px',
     },
+    item: {
+      padding: '0px 8px 0px 10px'
+    }
   });
 
 
 const List = ({data, loading}) => {
 
+    const highestViewers = data.streams[0].viewers;
     const classes = useStyles();
     const items = data.streams.map((data) => {
         return (
         <Grid container key={data._id} direction="row" justify="center" alignItems="center">
-            <Grid item xs={4}><Bar data={data}></Bar></Grid>
-            <Grid item xs={2}>
+            <Grid item className={classes.item} xs={4}><Bar viewers={data.viewers} max={highestViewers}></Bar></Grid>
+            <Grid item className={classes.item} xs={2}>
               <Avatar src={data.channel.logo}>
               </Avatar>
             </Grid>
-            <Grid item xs={2}><p>{data.channel.display_name}</p></Grid>
-            <Grid item xs={2}><p>{data.channel.game ? data.channel.game : "no game"}</p></Grid>
-            <Grid item xs={2}><p>{data.viewers} viewers</p></Grid>
+            <Grid item className={classes.item} xs={2}><p>{data.channel.display_name}</p></Grid>
+            <Grid item className={classes.item} xs={2}><p>{data.channel.game ? data.channel.game : "no game"}</p></Grid>
+            <Grid item className={classes.item} xs={2}><p>{data.viewers} viewers</p></Grid>
         </Grid>
         )
     })

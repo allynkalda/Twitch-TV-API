@@ -1,10 +1,9 @@
 import React from 'react';
 import '../Bar.css';
 
-const Bar = ({data}) => {
-    console.log(data)
+const Bar = ({viewers, max}) => {
   return (
-      <progress className="progress-style" value={25} max={100}>
+      <progress className="progress-style" value={viewers} max={max}>
       </progress>
   );
 }
