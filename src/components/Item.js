@@ -27,7 +27,7 @@ export default function Item(prop) {
     const classes = useStyles();
     const items = data.streams.map((data) => {
         return (
-        <Grid item className={classes.grid} id={data._id} xl={4} lg={4} md={4} sm={6} xs={12}>
+        <Grid item className={classes.grid} key={data._id} xl={4} lg={4} md={4} sm={6} xs={12}>
           <Card className={classes.card}>
           <CardHeader
             avatar={

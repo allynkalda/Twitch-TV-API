@@ -1,0 +1,13 @@
+
+  progress, progress[role] {
+    appearance: none;
+    border: none;
+    background-size: auto;
+    height: 50px;
+    width: 100%;
+  }
+  
+  progress::-webkit-progress-bar {background-color: #aaa; width: 100%;}
+  progress::-webkit-progress-value {background-color: #ff6b6b !important;}
+  progress {background-color: #aaa;}
+  progress::-moz-progress-bar {background-color: #ff6b6b !important;}
