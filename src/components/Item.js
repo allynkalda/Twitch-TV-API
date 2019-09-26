@@ -5,6 +5,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import { makeStyles } from '@material-ui/styles';
 import { switchLanguage } from '../config/languages'
 
@@ -36,8 +37,9 @@ export default function Item(prop) {
     }
     const items = data.streams.map((data, index) => {
         return (
-        <Grid item className={classes.grid} key={data._id} xl={4} lg={4} md={4} sm={6} xs={12}>
+        <Grid onClick={() => window.open(data.channel.url)} item className={classes.grid} key={data._id} xl={4} lg={4} md={4} sm={6} xs={12}>
           <Card>
+          <CardActionArea>
           <CardHeader
             avatar={
               <Avatar src={data.channel.logo}>
@@ -59,6 +61,7 @@ export default function Item(prop) {
               </Avatar>
               </Grid>
             </CardContent>
+            </CardActionArea>
           </Card>
         </Grid>
         )

@@ -3,6 +3,8 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import { makeStyles } from '@material-ui/styles';
 import Bar from './Bar'
 
@@ -11,14 +13,18 @@ const useStyles = makeStyles({
       padding: '80px',
       textAlign: 'center'
     },
+    card: {
+      width: '100vw'
+    },
     container: {
       padding: '8px',
-      borderBottomColor: '#efefef',    
-      borderBottomWidth: '0.5px',
-      borderBottomStyle: 'solid'
     },
     item: {
       padding: '0px 8px 0px 8px'
+    },
+    text: {
+      textAlign: 'center',
+      fontWeight: 'bold'
     },
     rank: {
       margin: '10',
@@ -34,21 +40,25 @@ const List = ({data, loading}) => {
     const classes = useStyles();
     const items = data.streams.map((data, index) => {
         return (
-            <Grid container className={classes.container} key={data._id} direction="row" justify="center" alignItems="center">
-              <Grid item className={classes.item} xs={1}>
+          <Card className={classes.card}>
+            <CardActionArea>
+            <Grid container onClick={() => window.open(data.channel.url)} className={classes.container} key={data._id} direction="row" justify="center" alignItems="center">
+              <Grid item className={classes.item} lg={1} md={1} sm={1} xs={3}>
                 <Avatar className={classes.rank} >
                   {index + 1}
                 </Avatar>
               </Grid>
-              <Grid item className={classes.item} xs={4}><Bar viewers={data.viewers} max={highestViewers}></Bar></Grid>
-              <Grid item className={classes.item} xs={1}>
+              <Grid item className={classes.item} lg={4} md={4} sm={4} xs={6}><Bar viewers={data.viewers} max={highestViewers}></Bar></Grid>
+              <Grid item className={classes.item} lg={1} md={1} sm={1} xs={3}>
                 <Avatar src={data.channel.logo}>
                 </Avatar>
               </Grid>
-              <Grid item className={classes.item} xs={2}><p>{data.channel.display_name}</p></Grid>
-              <Grid item className={classes.item} xs={2}><p>{data.channel.game ? data.channel.game : "no game"}</p></Grid>
-              <Grid item className={classes.item} xs={2}><p>{data.viewers.toLocaleString()} viewers</p></Grid>
+              <Grid item className={classes.item} lg={2} md={2} sm={2} xs={4}><p>{data.channel.display_name}</p></Grid>
+              <Grid item className={classes.item} lg={2} md={2} sm={2} xs={4}><p>{data.channel.game ? data.channel.game : "no game"}</p></Grid>
+              <Grid item className={classes.item} lg={2} md={2} sm={2} xs={4}><p>{data.viewers.toLocaleString()} viewers</p></Grid>
           </Grid>
+          </CardActionArea>
+        </Card>
         )
     })
 
@@ -65,9 +75,28 @@ const List = ({data, loading}) => {
              />
             </div>
             ) : (
-                <Grid container direction="row">
-                    {data && data.streams ? items : null}
-                </Grid>
+        <Grid container direction="row">
+          <Card className={classes.card}>
+            <Grid container onClick={() => window.open(data.channel.url)} className={classes.container} key={data._id} direction="row" justify="center" alignItems="center">
+              <Grid item className={classes.text} lg={1} md={1} sm={1} xs={3}>
+                <p>Ranking</p>
+              </Grid>
+              <Grid item className={classes.text} lg={4} md={4} sm={4} xs={6}>
+                <p>Viewers Bar</p>
+              </Grid>
+              <Grid item className={classes.text} lg={1} md={1} sm={1} xs={3}>
+                <p>Logo</p>
+              </Grid>
+              <Grid item className={classes.text} lg={2} md={2} sm={2} xs={4}>
+                <p>Streamer Name</p></Grid>
+              <Grid item className={classes.text} lg={2} md={2} sm={2} xs={4}>
+                <p>Game</p></Grid>
+              <Grid item className={classes.text} lg={2} md={2} sm={2} xs={4}>
+                <p>Number of viewers</p></Grid>
+            </Grid>
+          </Card>
+            {data && data.streams ? items : null}
+        </Grid>
             ) }
         </div>
 
