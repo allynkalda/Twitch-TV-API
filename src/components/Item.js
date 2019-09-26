@@ -6,6 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import Chip from '@material-ui/core/Chip';
 import { makeStyles } from '@material-ui/styles';
 import { switchLanguage } from '../config/languages'
 
@@ -54,8 +55,8 @@ export default function Item(prop) {
           />
             <CardContent>
               <Grid container direction="row" justify="space-between" alignItems="center">
-              <p>{data.viewers.toLocaleString()} viewers</p>
-              <p>{switchLanguage(data.channel.language.toUpperCase())}</p>
+              <Chip label={data.viewers.toLocaleString() + " viewers"} color="primary"></Chip>
+              <Chip label={switchLanguage(data.channel.language.toUpperCase())} color="primary"></Chip>
               <Avatar className={classes.rank} >
                 {index + 1}
               </Avatar>
