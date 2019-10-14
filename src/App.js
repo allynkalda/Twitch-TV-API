@@ -10,9 +10,6 @@ function App() {
 
 const [ bar, setBar ] = useState(false);
 const [ data, loading ] = useFetch(URL);
-console.log(data);
-console.log('loading', loading)
-console.log('bar', bar)
 
 const renderBar = () => {
   setBar(!bar);
