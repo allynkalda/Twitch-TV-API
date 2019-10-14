@@ -14,7 +14,8 @@ const useStyles = makeStyles({
       textAlign: 'center'
     },
     card: {
-      width: '100vw'
+      width: '100vw',
+      padding: '10px 0px 10px 0px'
     },
     container: {
       padding: '8px',
@@ -30,6 +31,9 @@ const useStyles = makeStyles({
       margin: '10',
       color: '#fff',
       backgroundColor: 'red'
+    },
+    container : {
+      textAlign: 'center'
     }
   });
 
@@ -40,6 +44,7 @@ const List = ({data, loading}) => {
     const classes = useStyles();
     const items = data.streams.map((data, index) => {
         return (
+          <div className={classes.container}>
           <Card className={classes.card}>
             <CardActionArea>
             <Grid container onClick={() => window.open(data.channel.url)} className={classes.container} key={data._id} direction="row" justify="center" alignItems="center">
@@ -59,6 +64,7 @@ const List = ({data, loading}) => {
           </Grid>
           </CardActionArea>
         </Card>
+        </div>
         )
     })
 
